@@ -1,4 +1,4 @@
-import rinkebyAddresses from '@zoralabs/core/dist/addresses/4.json'
+import rinkebyAddresses from '/addresses.json'
 import mainnetAddresses from '@zoralabs/core/dist/addresses/1.json'
 
 interface AddressBook {
