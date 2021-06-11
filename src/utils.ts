@@ -238,6 +238,9 @@ export function chainIdToNetworkName(chainId: number): string {
     case 1: {
       return 'mainnet'
     }
+    case 80001: {
+      return 'mumbai'
+    }
   }
 
   invariant(false, `chainId ${chainId} not officially supported by the Zora Protocol`)
