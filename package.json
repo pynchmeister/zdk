@@ -1,7 +1,7 @@
 {
   "name": "@levinhs/zdk",
   "description": "An SDK for using the ZAp Media Protocol",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "main": "dist/src/index.js",
   "typings": "dist/src/index.d.ts",
   "files": [

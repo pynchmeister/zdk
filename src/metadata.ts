@@ -5,8 +5,8 @@ import {
   validateVersion,
   supportedVersions,
   supportedVersionsTypeMapping,
-} from '@zoralabs/media-metadata-schemas/dist/src'
-import * as MetadataTypes from '@zoralabs/media-metadata-schemas/dist/types/types'
+} from '@levinhs/media-metadata-schemas/dist/src'
+import * as MetadataTypes from '@levinhs/media-metadata-schemas/dist/types/types'
 
 export { MetadataTypes }
 export { validateVersion, supportedVersions, supportedVersionsTypeMapping }

@@ -23,7 +23,7 @@ import {
 import { arrayify, hexDataLength, hexlify, isHexString } from '@ethersproject/bytes'
 import { recoverTypedSignature, signTypedData_v4 } from 'eth-sig-util'
 import { fromRpcSig, toRpcSig } from 'ethereumjs-util'
-import { BaseErc20Factory } from '@zoralabs/core/dist/typechain'
+import { BaseErc20Factory } from '@levinhs/core/dist/typechain'
 import axios from 'axios'
 
 // // https://etherscan.io/address/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2
