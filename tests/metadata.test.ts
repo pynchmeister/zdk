@@ -1,8 +1,8 @@
 import { generateMetadata, parseMetadata, validateMetadata } from '../src'
-import { Zora20210101 } from '@zoralabs/media-metadata-schemas'
+import { Zap20210101 } from '@levinhs/media-metadata-schemas'
 
 describe('Metadata', () => {
-  function isZora20210101(json: Object): json is Zora20210101 {
+  function isZap20210101(json: Object): json is Zap20210101 {
     return (
       'name' in json && 'mimeType' in json && 'version' in json && 'description' in json
     )
@@ -10,11 +10,11 @@ describe('Metadata', () => {
 
   describe('#generateMetadata', () => {
     it('generates metadata', () => {
-      const expected = require('../fixtures/metadata/zora20210101-minified.json')
-      const metadata = generateMetadata('zora-20210101', {
-        name: 'zora whitepaper',
+      const expected = require('../fixtures/metadata/zap20210101-minified.json')
+      const metadata = generateMetadata('zap-20210101', {
+        name: 'zap whitepaper',
         description: 'internet renaissance',
-        version: 'zora-20210101',
+        version: 'zap-20210101',
         mimeType: 'application/json',
       })
 
@@ -27,9 +27,9 @@ describe('Metadata', () => {
       }).toThrow('There are no versions with the coinbase project name')
 
       expect(() => {
-        generateMetadata('zora-20210102', {})
+        generateMetadata('zap-20210102', {})
       }).toThrow(
-        'There are no versions in the zora namespace with the 20210102 calendar version'
+        'There are no versions in the zap namespace with the 20210102 calendar version'
       )
     })
   })
@@ -40,11 +40,11 @@ describe('Metadata', () => {
         description: 'blah',
         mimeType: 'application/json',
         name: 'who cares',
-        version: 'zora-01012021',
+        version: 'zap-01012021',
       }
 
-      const result = parseMetadata('zora-20210101', JSON.stringify(json))
-      expect(isZora20210101(result)).toBe(true)
+      const result = parseMetadata('zap-20210101', JSON.stringify(json))
+      expect(isZap20210101(result)).toBe(true)
       expect(result).toMatchObject(json)
     })
 
@@ -54,9 +54,9 @@ describe('Metadata', () => {
       }).toThrow('There are no versions with the coinbase project name')
 
       expect(() => {
-        parseMetadata('zora-20210102', '{}')
+        parseMetadata('zap-20210102', '{}')
       }).toThrow(
-        'There are no versions in the zora namespace with the 20210102 calendar version'
+        'There are no versions in the zap namespace with the 20210102 calendar version'
       )
     })
   })
@@ -67,10 +67,10 @@ describe('Metadata', () => {
         description: 'blah',
         mimeType: 'application/json',
         name: 'who cares',
-        version: 'zora-01012021',
+        version: 'zap-01012021',
       }
 
-      const result = validateMetadata('zora-20210101', json)
+      const result = validateMetadata('zap-20210101', json)
       expect(result).toBe(true)
     })
 
@@ -79,11 +79,11 @@ describe('Metadata', () => {
         description: 'blah',
         mimeType: 'application/json',
         name: 'who cares',
-        version: 'zora-01012021',
+        version: 'zap-01012021',
         additionalProperty: 'idk',
       }
 
-      const result = validateMetadata('zora-20210101', json)
+      const result = validateMetadata('zap-20210101', json)
       expect(result).toBe(false)
     })
     it('raises if specified version is unsupported', () => {
@@ -92,9 +92,9 @@ describe('Metadata', () => {
       }).toThrow('There are no versions with the coinbase project name')
 
       expect(() => {
-        validateMetadata('zora-20210102', {})
+        validateMetadata('zap-20210102', {})
       }).toThrow(
-        'There are no versions in the zora namespace with the 20210102 calendar version'
+        'There are no versions in the zap namespace with the 20210102 calendar version'
       )
     })
   })

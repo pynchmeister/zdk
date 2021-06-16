@@ -16,7 +16,7 @@ import {
 } from './utils'
 import invariant from 'tiny-invariant'
 
-export class Zora {
+export class Zap {
   public chainId: number
   public mediaAddress: string
   public marketAddress: string
@@ -34,7 +34,7 @@ export class Zora {
     if (!mediaAddress != !marketAddress) {
       invariant(
         false,
-        'Zora Constructor: mediaAddress and marketAddress must both be non-null or both be null'
+        'Zap Constructor: mediaAddress and marketAddress must both be non-null or both be null'
       )
     }
 
@@ -63,12 +63,12 @@ export class Zora {
   }
 
   /*********************
-   * Zora View Methods
+   * Zap View Methods
    *********************
    */
 
   /**
-   * Fetches the content hash for the specified media on the Zora Media Contract
+   * Fetches the content hash for the specified media on the Zap Media Contract
    * @param mediaId
    */
   public async fetchContentHash(mediaId: BigNumberish): Promise<string> {
@@ -76,7 +76,7 @@ export class Zora {
   }
 
   /**
-   * Fetches the metadata hash for the specified media on an instance of the Zora Media Contract
+   * Fetches the metadata hash for the specified media on an instance of the Zap Media Contract
    * @param mediaId
    */
   public async fetchMetadataHash(mediaId: BigNumberish): Promise<string> {
@@ -84,7 +84,7 @@ export class Zora {
   }
 
   /**
-   * Fetches the content uri for the specified media on an instance of the Zora Media Contract
+   * Fetches the content uri for the specified media on an instance of the Zap Media Contract
    * @param mediaId
    */
   public async fetchContentURI(mediaId: BigNumberish): Promise<string> {
@@ -92,7 +92,7 @@ export class Zora {
   }
 
   /**
-   * Fetches the metadata uri for the specified media on an instance of the Zora Media Contract
+   * Fetches the metadata uri for the specified media on an instance of the Zap Media Contract
    * @param mediaId
    */
   public async fetchMetadataURI(mediaId: BigNumberish): Promise<string> {
@@ -100,7 +100,7 @@ export class Zora {
   }
 
   /**
-   * Fetches the creator for the specified media on an instance of the Zora Media Contract
+   * Fetches the creator for the specified media on an instance of the Zap Media Contract
    * @param mediaId
    */
   public async fetchCreator(mediaId: BigNumberish): Promise<string> {
@@ -108,7 +108,7 @@ export class Zora {
   }
 
   /**
-   * Fetches the current bid shares for the specified media on an instance of the Zora Media Contract
+   * Fetches the current bid shares for the specified media on an instance of the Zap Media Contract
    * @param mediaId
    */
   public async fetchCurrentBidShares(mediaId: BigNumberish): Promise<BidShares> {
@@ -116,7 +116,7 @@ export class Zora {
   }
 
   /**
-   * Fetches the current ask for the specified media on an instance of the Zora Media Contract
+   * Fetches the current ask for the specified media on an instance of the Zap Media Contract
    * @param mediaId
    */
   public async fetchCurrentAsk(mediaId: BigNumberish): Promise<Ask> {
@@ -124,7 +124,7 @@ export class Zora {
   }
 
   /**
-   * Fetches the current bid for the specified bidder for the specified media on an instance of the Zora Media Contract
+   * Fetches the current bid for the specified bidder for the specified media on an instance of the Zap Media Contract
    * @param mediaId
    * @param bidder
    */
@@ -157,12 +157,12 @@ export class Zora {
   }
 
   /*********************
-   * Zora Write Methods
+   * Zap Write Methods
    *********************
    */
 
   /**
-   * Updates the content uri for the specified media on an instance of the Zora Media Contract
+   * Updates the content uri for the specified media on an instance of the Zap Media Contract
    * @param mediaId
    * @param tokenURI
    */
@@ -181,7 +181,7 @@ export class Zora {
   }
 
   /**
-   * Updates the metadata uri for the specified media on an instance of the Zora Media Contract
+   * Updates the metadata uri for the specified media on an instance of the Zap Media Contract
    * @param mediaId
    * @param metadataURI
    */
@@ -200,7 +200,7 @@ export class Zora {
   }
 
   /**
-   * Mints a new piece of media on an instance of the Zora Media Contract
+   * Mints a new piece of media on an instance of the Zap Media Contract
    * @param mintData
    * @param bidShares
    */
@@ -219,11 +219,13 @@ export class Zora {
 
     const gasEstimate = await this.media.estimateGas.mint(mediaData, bidShares)
     const paddedEstimate = gasEstimate.mul(110).div(100)
-    return this.media.mint(mediaData, bidShares, { gasLimit: paddedEstimate.toString() })
+    return this.media.mint(mediaData, bidShares, {
+      gasLimit: paddedEstimate.toString(),
+    })
   }
 
   /**
-   * Mints a new piece of media on an instance of the Zora Media Contract
+   * Mints a new piece of media on an instance of the Zap Media Contract
    * @param creator
    * @param mediaData
    * @param bidShares
@@ -248,7 +250,7 @@ export class Zora {
   }
 
   /**
-   * Sets an ask on the specified media on an instance of the Zora Media Contract
+   * Sets an ask on the specified media on an instance of the Zap Media Contract
    * @param mediaId
    * @param ask
    */
@@ -263,7 +265,7 @@ export class Zora {
   }
 
   /**
-   * Sets a bid on the specified media on an instance of the Zora Media Contract
+   * Sets a bid on the specified media on an instance of the Zap Media Contract
    * @param mediaId
    * @param bid
    */
@@ -278,7 +280,7 @@ export class Zora {
   }
 
   /**
-   * Removes the ask on the specified media on an instance of the Zora Media Contract
+   * Removes the ask on the specified media on an instance of the Zap Media Contract
    * @param mediaId
    */
   public async removeAsk(mediaId: BigNumberish): Promise<ContractTransaction> {
@@ -292,7 +294,7 @@ export class Zora {
   }
 
   /**
-   * Removes the bid for the msg.sender on the specified media on an instance of the Zora Media Contract
+   * Removes the bid for the msg.sender on the specified media on an instance of the Zap Media Contract
    * @param mediaId
    */
   public async removeBid(mediaId: BigNumberish): Promise<ContractTransaction> {
@@ -306,7 +308,7 @@ export class Zora {
   }
 
   /**
-   * Accepts the specified bid on the specified media on an instance of the Zora Media Contract
+   * Accepts the specified bid on the specified media on an instance of the Zap Media Contract
    * @param mediaId
    * @param bid
    */
@@ -341,7 +343,7 @@ export class Zora {
   }
 
   /**
-   * Revokes the approval of an approved account for the specified media on an instance of the Zora Media Contract
+   * Revokes the approval of an approved account for the specified media on an instance of the Zap Media Contract
    * @param mediaId
    */
   public async revokeApproval(mediaId: BigNumberish): Promise<ContractTransaction> {
@@ -355,7 +357,7 @@ export class Zora {
   }
 
   /**
-   * Burns the specified media on an instance of the Zora Media Contract
+   * Burns the specified media on an instance of the Zap Media Contract
    * @param mediaId
    */
   public async burn(mediaId: BigNumberish): Promise<ContractTransaction> {
@@ -374,7 +376,7 @@ export class Zora {
    */
 
   /**
-   * Fetches the total balance of media owned by the specified owner on an instance of the Zora Media Contract
+   * Fetches the total balance of media owned by the specified owner on an instance of the Zap Media Contract
    * @param owner
    */
   public async fetchBalanceOf(owner: string): Promise<BigNumber> {
@@ -382,7 +384,7 @@ export class Zora {
   }
 
   /**
-   * Fetches the owner of the specified media on an instance of the Zora Media Contract
+   * Fetches the owner of the specified media on an instance of the Zap Media Contract
    * @param mediaId
    */
   public async fetchOwnerOf(mediaId: BigNumberish): Promise<string> {
@@ -390,7 +392,7 @@ export class Zora {
   }
 
   /**
-   * Fetches the mediaId of the specified owner by index on an instance of the Zora Media Contract
+   * Fetches the mediaId of the specified owner by index on an instance of the Zap Media Contract
    * @param owner
    * @param index
    */
@@ -402,14 +404,14 @@ export class Zora {
   }
 
   /**
-   * Fetches the total amount of non-burned media that has been minted on an instance of the Zora Media Contract
+   * Fetches the total amount of non-burned media that has been minted on an instance of the Zap Media Contract
    */
   public async fetchTotalMedia(): Promise<BigNumber> {
     return this.media.totalSupply()
   }
 
   /**
-   * Fetches the mediaId by index on an instance of the Zora Media Contract
+   * Fetches the mediaId by index on an instance of the Zap Media Contract
    * @param index
    */
   public async fetchMediaByIndex(index: BigNumberish): Promise<BigNumber> {
@@ -417,7 +419,7 @@ export class Zora {
   }
 
   /**
-   * Fetches the approved account for the specified media on an instance of the Zora Media Contract
+   * Fetches the approved account for the specified media on an instance of the Zap Media Contract
    * @param mediaId
    */
   public async fetchApproved(mediaId: BigNumberish): Promise<string> {
@@ -425,7 +427,7 @@ export class Zora {
   }
 
   /**
-   * Fetches if the specified operator is approved for all media owned by the specified owner on an instance of the Zora Media Contract
+   * Fetches if the specified operator is approved for all media owned by the specified owner on an instance of the Zap Media Contract
    * @param owner
    * @param operator
    */
@@ -439,7 +441,7 @@ export class Zora {
    */
 
   /**
-   * Grants approval to the specified address for the specified media on an instance of the Zora Media Contract
+   * Grants approval to the specified address for the specified media on an instance of the Zap Media Contract
    * @param to
    * @param mediaId
    */
@@ -454,7 +456,7 @@ export class Zora {
   }
 
   /**
-   * Grants approval for all media owner by msg.sender on an instance of the Zora Media Contract
+   * Grants approval for all media owner by msg.sender on an instance of the Zap Media Contract
    * @param operator
    * @param approved
    */
@@ -472,7 +474,7 @@ export class Zora {
   }
 
   /**
-   * Transfers the specified media to the specified to address on an instance of the Zora Media Contract
+   * Transfers the specified media to the specified to address on an instance of the Zap Media Contract
    * @param from
    * @param to
    * @param mediaId
@@ -517,7 +519,7 @@ export class Zora {
    */
 
   /**
-   * Returns the EIP-712 Domain for an instance of the Zora Media Contract
+   * Returns the EIP-712 Domain for an instance of the Zap Media Contract
    */
   public eip712Domain(): EIP712Domain {
     // Due to a bug in ganache-core, set the chainId to 1 if its a local blockchain
@@ -525,7 +527,7 @@ export class Zora {
     const chainId = this.chainId == 50 ? 1 : this.chainId
 
     return {
-      name: 'Zora',
+      name: 'Zap',
       version: '1',
       chainId: chainId,
       verifyingContract: this.mediaAddress,
@@ -595,13 +597,13 @@ export class Zora {
    */
 
   /**
-   * Throws an error if called on a readOnly == true instance of Zora Sdk
+   * Throws an error if called on a readOnly == true instance of Zap Sdk
    * @private
    */
   private ensureNotReadOnly() {
     if (this.readOnly) {
       throw new Error(
-        'ensureNotReadOnly: readOnly Zora instance cannot call contract methods that require a signer.'
+        'ensureNotReadOnly: readOnly Zap instance cannot call contract methods that require a signer.'
       )
     }
   }

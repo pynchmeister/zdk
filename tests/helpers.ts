@@ -1,23 +1,21 @@
-import {
-  BaseErc20Factory,
-  MarketFactory,
-  MediaFactory,
-} from '@zoralabs/core/dist/typechain'
+import { BaseErc20Factory } from '../typechain/BaseErc20Factory'
+import { MarketFactory } from '../typechain/MarketFactory'
+import { MediaFactory } from '../typechain/MediaFactory'
 import { Wallet } from '@ethersproject/wallet'
 import { BigNumber } from '@ethersproject/bignumber'
 import { ContractTransaction } from '@ethersproject/contracts'
 import { MaxUint256 } from '@ethersproject/constants'
 
-export type ZoraConfiguredAddresses = {
+export type ZapConfiguredAddresses = {
   media: string
   market: string
   currency: string
 }
 
-export async function setupZora(
+export async function setupZap(
   wallet: Wallet,
   testWallets: Array<Wallet>
-): Promise<ZoraConfiguredAddresses> {
+): Promise<ZapConfiguredAddresses> {
   const market = await (await new MarketFactory(wallet).deploy()).deployed()
   const marketAddress = market.address
 

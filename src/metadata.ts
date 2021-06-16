@@ -13,7 +13,7 @@ export { validateVersion, supportedVersions, supportedVersionsTypeMapping }
 export type JSONLike = { [key: string]: any }
 
 /**
- * Generates alphabetized, minified JSON for the specified Zora Metadata Schema Version.
+ * Generates alphabetized, minified JSON for the specified Zap Metadata Schema Version.
  * Raises an Error if the data does not conform to the Schema Version specified.
  *
  * @param version

@@ -1,13 +1,13 @@
 {
-  "name": "@zoralabs/zdk",
-  "description": "An SDK for using the Zora Media Protocol",
-  "version": "1.2.1",
+  "name": "@levinhs/zdk",
+  "description": "An SDK for using the ZAp Media Protocol",
+  "version": "1.2.2",
   "main": "dist/src/index.js",
   "typings": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
-  "author": "Zora",
+  "author": "Harris",
   "license": "MIT",
   "private": false,
   "scripts": {
@@ -24,8 +24,8 @@
   },
   "dependencies": {
     "@zoralabs/auction-house": "^1.1.1",
-    "@zoralabs/core": "^1.0.3",
-    "@zoralabs/media-metadata-schemas": "^0.1.2",
+    "@levinhs/media-metadata-schemas": "0.0.2",
+    "@levinhs/core": "0.0.2",
     "axios": "^0.21.1",
     "eth-sig-util": "^3.0.0",
     "ethereumjs-util": "^7.0.7",
@@ -79,13 +79,5 @@
   },
   "directories": {
     "test": "tests"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ourzora/zora-sdk.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ourzora/zora-sdk/issues"
-  },
-  "homepage": "https://github.com/ourzora/zora-sdk#readme"
+  }
 }

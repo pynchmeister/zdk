@@ -1,4 +1,4 @@
-export * from './zora'
+export * from './zap'
 export * from './types'
 export * from './utils'
 export * from './addresses'

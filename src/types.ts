@@ -7,7 +7,7 @@ import { BytesLike } from '@ethersproject/bytes'
 export type DecimalValue = { value: BigNumber }
 
 /**
- * Zora Media Protocol BidShares
+ * Zap Media Protocol BidShares
  */
 export type BidShares = {
   owner: DecimalValue
@@ -16,7 +16,7 @@ export type BidShares = {
 }
 
 /**
- * Zora Media Protocol Ask
+ * Zap Media Protocol Ask
  */
 export type Ask = {
   currency: string
@@ -24,7 +24,7 @@ export type Ask = {
 }
 
 /**
- * Zora Media Protocol Bid
+ * Zap Media Protocol Bid
  */
 export type Bid = {
   currency: string
@@ -35,7 +35,7 @@ export type Bid = {
 }
 
 /**
- * Zora Media Protocol MediaData
+ * Zap Media Protocol MediaData
  */
 export type MediaData = {
   tokenURI: string

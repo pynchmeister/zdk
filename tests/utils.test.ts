@@ -21,11 +21,11 @@ import {
   unwrapWETH,
 } from '../src/utils'
 import { promises as fs } from 'fs'
-import { Decimal, Zora } from '../src'
-import { Blockchain, generatedWallets } from '@zoralabs/core/dist/utils'
+import { Decimal, Zap } from '../src'
+import { Blockchain, generatedWallets } from '@levinhs/core/dist/utils'
 import { JsonRpcProvider } from '@ethersproject/providers'
-import { mintCurrency, setupZora, ZoraConfiguredAddresses } from './helpers'
-import { BaseErc20Factory } from '@zoralabs/core/dist/typechain'
+import { mintCurrency, setupZap, ZapConfiguredAddresses } from './helpers'
+import { BaseErc20Factory } from '@levinhs/core/dist/typechain'
 import { BigNumber } from '@ethersproject/bignumber'
 import { MaxUint256 } from '@ethersproject/constants'
 import axios from 'axios'
@@ -435,7 +435,7 @@ describe('Utils', () => {
 
   describe('EIP-712 Utilities', () => {
     describe('#signPermitMessage', () => {
-      let zoraConfig: ZoraConfiguredAddresses
+      let zoraConfig: ZapConfiguredAddresses
 
       beforeAll(() => {
         zoraConfig = {
@@ -448,7 +448,7 @@ describe('Utils', () => {
       it('signs the message correctly', async () => {
         const provider = new JsonRpcProvider()
         const [mainWallet, otherWallet] = generatedWallets(provider)
-        const zora = new Zora(provider, 50, zoraConfig.media, zoraConfig.market)
+        const zora = new Zap(provider, 50, zoraConfig.media, zoraConfig.market)
         const deadline = Math.floor(new Date().getTime() / 1000) + 60 * 60 * 24 // 24 hours
         const domain = zora.eip712Domain()
         const eipSig = await signPermitMessage(
@@ -475,8 +475,8 @@ describe('Utils', () => {
       it('signs a permit message that is able to be processed on chain', async () => {
         const provider = new JsonRpcProvider()
         const [mainWallet, otherWallet] = generatedWallets(provider)
-        const onChainConfig = await setupZora(mainWallet, [otherWallet])
-        const mainZora = new Zora(
+        const onChainConfig = await setupZap(mainWallet, [otherWallet])
+        const mainZora = new Zap(
           mainWallet,
           50,
           onChainConfig.media,
@@ -505,7 +505,7 @@ describe('Utils', () => {
           domain
         )
 
-        const otherZora = new Zora(
+        const otherZora = new Zap(
           mainWallet,
           50,
           onChainConfig.media,
@@ -518,7 +518,7 @@ describe('Utils', () => {
     })
 
     describe('#recoverSignatureFromPermit', () => {
-      let zoraConfig: ZoraConfiguredAddresses
+      let zoraConfig: ZapConfiguredAddresses
 
       beforeAll(() => {
         zoraConfig = {
@@ -531,7 +531,7 @@ describe('Utils', () => {
       it('returns a different recovered address if the message is different', async () => {
         const provider = new JsonRpcProvider()
         const [mainWallet, otherWallet] = generatedWallets(provider)
-        const zora = new Zora(provider, 50, zoraConfig.media, zoraConfig.market)
+        const zora = new Zap(provider, 50, zoraConfig.media, zoraConfig.market)
         const deadline = Math.floor(new Date().getTime() / 1000) + 60 * 60 * 24 // 24 hours
         const domain = zora.eip712Domain()
         const eipSig = await signPermitMessage(
@@ -557,7 +557,7 @@ describe('Utils', () => {
     })
 
     describe('#signMintWithSig', () => {
-      let zoraConfig: ZoraConfiguredAddresses
+      let zoraConfig: ZapConfiguredAddresses
 
       beforeAll(() => {
         zoraConfig = {
@@ -570,7 +570,7 @@ describe('Utils', () => {
       it('signs the message correctly', async () => {
         const provider = new JsonRpcProvider()
         const [mainWallet] = generatedWallets(provider)
-        const zora = new Zora(provider, 50, zoraConfig.media, zoraConfig.market)
+        const zora = new Zap(provider, 50, zoraConfig.media, zoraConfig.market)
         const deadline = Math.floor(new Date().getTime() / 1000) + 60 * 60 * 24 // 24 hours
         const domain = zora.eip712Domain()
         const contentHash = sha256FromBuffer(Buffer.from('some content'))
@@ -601,8 +601,8 @@ describe('Utils', () => {
 
       it('signs a mintWithSig message that is able to be processed on chain', async () => {
         const [mainWallet, otherWallet] = generatedWallets(provider)
-        const onChainConfig = await setupZora(mainWallet, [otherWallet])
-        const otherZora = new Zora(
+        const onChainConfig = await setupZap(mainWallet, [otherWallet])
+        const otherZora = new Zap(
           otherWallet,
           50,
           onChainConfig.media,
@@ -656,7 +656,7 @@ describe('Utils', () => {
     })
 
     describe('#recoverSignatureFromMintWithSig', () => {
-      let zoraConfig: ZoraConfiguredAddresses
+      let zoraConfig: ZapConfiguredAddresses
 
       beforeAll(() => {
         zoraConfig = {
@@ -669,7 +669,7 @@ describe('Utils', () => {
       it('returns a different recovered address if the message is different', async () => {
         const provider = new JsonRpcProvider()
         const [mainWallet] = generatedWallets(provider)
-        const zora = new Zora(provider, 50, zoraConfig.media, zoraConfig.market)
+        const zora = new Zap(provider, 50, zoraConfig.media, zoraConfig.market)
         const deadline = Math.floor(new Date().getTime() / 1000) + 60 * 60 * 24 // 24 hours
         const domain = zora.eip712Domain()
 

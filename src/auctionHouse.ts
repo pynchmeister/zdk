@@ -27,7 +27,7 @@ export class AuctionHouse {
   public readonly readOnly: boolean
   public readonly signerOrProvider: Signer | Provider
   public readonly auctionHouse: AuctionHouseContract
-  public readonly zoraAddress: string
+  public readonly zapAddress: string
 
   constructor(signerOrProvider: Signer | Provider, chainId: number) {
     this.chainId = chainId
@@ -40,7 +40,7 @@ export class AuctionHouse {
         : rinkebyAddresses.auctionHouse
     this.auctionHouse = AuctionHouse__factory.connect(address, signerOrProvider)
     const network = chainIdToNetworkName(chainId)
-    this.zoraAddress = addresses[network].media
+    this.zapAddress = addresses[network].media
   }
 
   public async fetchAuction(auctionId: BigNumberish): Promise<Auction> {
@@ -68,7 +68,7 @@ export class AuctionHouse {
     curator: string,
     curatorFeePercentages: number,
     auctionCurrency: string,
-    tokenAddress: string = this.zoraAddress
+    tokenAddress: string = this.zapAddress
   ) {
     return this.auctionHouse.createAuction(
       tokenId,
