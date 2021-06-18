@@ -238,8 +238,11 @@ export function chainIdToNetworkName(chainId: number): string {
     case 1: {
       return 'mainnet'
     }
+    case 97: {
+      return 'BSCTest'
+    }
     case 80001: {
-      return 'maticTest'
+      return 'Mumbai'
     }
   }
 

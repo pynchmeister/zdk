@@ -15,6 +15,6 @@ interface AddressBook {
 export const addresses: AddressBook = {
   rinkeby: rinkebyAddresses,
   mainnet: mainnetAddresses,
-  maticTest: maticTestAddresses,
-  bscTest: bscTestAddresses,
+  Mumbai: maticTestAddresses,
+  BSCTest: bscTestAddresses,
 }
