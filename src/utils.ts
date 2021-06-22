@@ -585,7 +585,7 @@ export async function signMintWithSigMessage(
  * @param amount
  */
 export async function approveERC20(
-  wallet: Wallet,
+  wallet: any,
   erc20Address: string,
   spender: string,
   amount: BigNumberish
