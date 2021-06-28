@@ -18,7 +18,7 @@ import {
   validateBytes32,
   validateURI,
   wrapETH,
-  unwrapWETH,
+  // unwrapWETH,
 } from '../src/utils'
 import { promises as fs } from 'fs'
 import { Decimal, Zap } from '../src'
@@ -855,65 +855,65 @@ describe('Utils', () => {
       })
     })
 
-    describe('unwrapWETH', () => {
-      it('unwraps the specified weth to eth', async () => {
-        const [mainWallet] = generatedWallets(provider)
-        const wethFactory = new ethers.ContractFactory(
-          wethContractDetails.abi,
-          wethContractDetails.bytecode,
-          mainWallet
-        )
+  //   describe('unwrapWETH', () => {
+  //     it('unwraps the specified weth to eth', async () => {
+  //       const [mainWallet] = generatedWallets(provider)
+  //       const wethFactory = new ethers.ContractFactory(
+  //         wethContractDetails.abi,
+  //         wethContractDetails.bytecode,
+  //         mainWallet
+  //       )
 
-        const weth = await wethFactory.deploy()
-        await weth.deployed()
-        const connectedWeth = weth.connect(mainWallet)
-        const ethBalance = await mainWallet.getBalance()
+  //       const weth = await wethFactory.deploy()
+  //       await weth.deployed()
+  //       const connectedWeth = weth.connect(mainWallet)
+  //       const ethBalance = await mainWallet.getBalance()
 
-        const wrapTx = await wrapETH(
-          mainWallet,
-          weth.address,
-          BigNumber.from('1000000000000000000')
-        )
-        const wrapReceipt = await provider.getTransactionReceipt(wrapTx.hash)
-        const wrapGas = wrapReceipt.gasUsed.mul(wrapTx.gasPrice.toString())
-        const balanceOf = await connectedWeth.balanceOf(mainWallet.address)
-        expect(balanceOf.toString()).toEqual('1000000000000000000')
+  //       const wrapTx = await wrapETH(
+  //         mainWallet,
+  //         weth.address,
+  //         BigNumber.from('1000000000000000000')
+  //       )
+  //       const wrapReceipt = await provider.getTransactionReceipt(wrapTx.hash)
+  //       const wrapGas = wrapReceipt.gasUsed.mul(wrapTx.gasPrice.toString())
+  //       const balanceOf = await connectedWeth.balanceOf(mainWallet.address)
+  //       expect(balanceOf.toString()).toEqual('1000000000000000000')
 
-        const unwrapTx = await unwrapWETH(
-          mainWallet,
-          weth.address,
-          BigNumber.from('1000000000000000000')
-        )
-        const unwrapReceipt = await provider.getTransactionReceipt(unwrapTx.hash)
-        const unwrapGas = unwrapReceipt.gasUsed.mul(unwrapTx.gasPrice.toString())
-        const newBalance = await connectedWeth.balanceOf(mainWallet.address)
-        expect(newBalance.toString()).toEqual('0')
+  //       const unwrapTx = await unwrapWETH(
+  //         mainWallet,
+  //         weth.address,
+  //         BigNumber.from('1000000000000000000')
+  //       )
+  //       const unwrapReceipt = await provider.getTransactionReceipt(unwrapTx.hash)
+  //       const unwrapGas = unwrapReceipt.gasUsed.mul(unwrapTx.gasPrice.toString())
+  //       const newBalance = await connectedWeth.balanceOf(mainWallet.address)
+  //       expect(newBalance.toString()).toEqual('0')
 
-        const newEthBalance = await mainWallet.getBalance()
-        expect(
-          BigNumber.from(ethBalance.toString()).sub(wrapGas).sub(unwrapGas).toString()
-        ).toEqual(BigNumber.from(newEthBalance.toString()).toString())
-      })
+  //       const newEthBalance = await mainWallet.getBalance()
+  //       expect(
+  //         BigNumber.from(ethBalance.toString()).sub(wrapGas).sub(unwrapGas).toString()
+  //       ).toEqual(BigNumber.from(newEthBalance.toString()).toString())
+  //     })
 
-      it('rejects if the address does not have enough weth to unwrap', async () => {
-        const [mainWallet] = generatedWallets(provider)
-        const wethFactory = new ethers.ContractFactory(
-          wethContractDetails.abi,
-          wethContractDetails.bytecode,
-          mainWallet
-        )
+  //     it('rejects if the address does not have enough weth to unwrap', async () => {
+  //       const [mainWallet] = generatedWallets(provider)
+  //       const wethFactory = new ethers.ContractFactory(
+  //         wethContractDetails.abi,
+  //         wethContractDetails.bytecode,
+  //         mainWallet
+  //       )
 
-        const weth = await wethFactory.deploy()
-        await weth.deployed()
-        await wrapETH(mainWallet, weth.address, BigNumber.from('1000000000000000000'))
-        await unwrapWETH(
-          mainWallet,
-          weth.address,
-          BigNumber.from('100000000000000000000')
-        ).catch((e) => {
-          expect(e.message).toContain('revert')
-        })
-      })
-    })
+  //       const weth = await wethFactory.deploy()
+  //       await weth.deployed()
+  //       await wrapETH(mainWallet, weth.address, BigNumber.from('1000000000000000000'))
+  //       await unwrapWETH(
+  //         mainWallet,
+  //         weth.address,
+  //         BigNumber.from('100000000000000000000')
+  //       ).catch((e) => {
+  //         expect(e.message).toContain('revert')
+  //       })
+  //     })
+    // })
   })
 })

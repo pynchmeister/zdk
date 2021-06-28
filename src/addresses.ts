@@ -1,5 +1,5 @@
 import rinkebyAddresses from './addresses.json'
-import mainnetAddresses from '@levinhs/core/dist/addresses/1.json'
+// import mainnetAddresses from '@levinhs/core/dist/addresses1.json'
 import maticTestAddresses from './maticTestAddresses.json'
 import bscTestAddresses from './bscTestAddresses.json'
 
@@ -14,7 +14,7 @@ interface AddressBook {
  */
 export const addresses: AddressBook = {
   rinkeby: rinkebyAddresses,
-  mainnet: mainnetAddresses,
+  // mainnet: mainnetAddresses,
   Mumbai: maticTestAddresses,
   BSCTest: bscTestAddresses,
 }
